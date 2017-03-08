@@ -1,0 +1,63 @@
+<? use Application\Model\Cdn; ?>
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta gttp-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta gttp-equiv="PRAGMA" content="NO-CACHE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/jquery.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/jqDataTable/jquery.dataTables.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/admin.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/bootstrap/js/bootstrap.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/tinymce/tinymce.min.js'))?>
+    <?= $this->headLink()->appendStylesheet(Cdn::css('/admin/jqDataTable/css/jquery.dataTables.css'))?>
+    <?= $this->headLink()->appendStylesheet(Cdn::css('/admin/bootstrap/css/bootstrap.css'))?>
+    <?= $this->headLink()->appendStylesheet(Cdn::css('/admin/css/admin.css'))?>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="headerContainer col-md-12">
+            <?= $this->render('admin/layout/header') ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2 nav-sidebar">
+            <!--        --><?php //$this->render('admin/layout/left_panel'); ?>
+            <ul class="nav nav-sidebar">
+                <li class="active"><a href="<?= $this->url('list_vacancies')?>">Departments</a></li>
+                <li><a href="<?= $this->url('career_header')?>">Career Header</a></li>
+                <li><a href="<?= $this->url('cv_career')?>">CV's</a></li>
+
+            </ul>
+        </div>
+        <div class="contentContainer col-md-10">
+            <?= $this->layout()->content ?>
+        </div>
+    </div>
+
+    <?= $this->render('admin/layout/footer') ?>
+</div>
+</body>
+
+<style>
+    .headerContainer{
+        background-color: yellow;
+        padding: 25px 10px;
+    }
+    .container-fluid{
+        background-color: #eee;
+    }
+    .contentContainer{
+        background-color: #fff;
+    }
+    .mainButtons{
+        padding: 15px;
+    }
+    .dataTable .btn{
+        margin-bottom: 5px;
+    }
+</style>

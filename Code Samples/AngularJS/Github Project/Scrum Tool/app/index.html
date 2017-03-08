@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html ng-app="scrumApp">
+    <head>
+        <meta charset="UTF-8">
+        <title ng-bind="'MUM Scrum Tool - ' + $root.title">MUM Scrum Tool</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="../theme/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="../theme/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="../theme/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="../theme/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <link href="../bower_components/angularjs-toaster/toaster.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="css/app.css">
+
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-route/angular-route.js"></script>
+        <script src="../bower_components/angular-resource/angular-resource.js"></script>
+        <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="../bower_components/angularjs-toaster/toaster.min.js"></script>
+        <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="../bower_components/ngDraggable/ngDraggable.js"></script>
+        <script src="../bower_components/angular-google-chart/ng-google-chart.js"></script>
+        <script src="app.js"></script>
+        <script src="filters.js"></script>
+        <script src="directives.js"></script>
+        <script src="authentication/auth.js"></script>
+        <script src="authentication/auth.factory.js"></script>
+        <script src="employee/employee.js"></script>
+        <script src="employee/employee.factory.js"></script>
+        <script src="product/product.js"></script>
+        <script src="product/product.factory.js"></script>
+        <script src="userstory/userstory.js"></script>
+        <script src="userstory/userstory.factory.js"></script>
+        <!-- release -->
+        <script src="release/release.js"></script>
+        <script src="release/release.factory.js"></script>
+        <!-- sprint -->
+        <script src="sprint/sprint.js"></script>
+        <script src="sprint/sprint.factory.js"></script>
+
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-black">
+        <toaster-container></toaster-container>
+        <!-- header logo: style can be found in header.less -->
+        
+        <header class="header" ng-switch on="globals.currentUser.is_auth">
+            <div ng-switch-when="true">
+                <header-menu current-user="globals.currentUser.user"></header-menu>
+            </div>
+        </header>
+
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+
+            <div ng-switch on="globals.currentUser.user_role">
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <div ng-switch-when="Product Owner">
+                    <product-owner-menu></product-owner-menu>
+                </div>
+
+                <div ng-switch-when="Scrum Master">
+                    <scrum-master-menu></scrum-master-menu>
+                </div>
+                
+                <div ng-switch-when="HR Admin">
+                    <hr-admin-menu></hr-admin-menu>
+                </div>
+
+                <div ng-switch-when="Developer">
+                    <developer-menu></developer-menu>
+                </div>
+
+                <div ng-switch-when="Tester">
+                    <tester-menu></tester-menu>
+                </div>
+
+            </div>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+
+                <div ng-switch on="globals.currentUser.is_auth">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header" ng-switch-when="true">
+                        <h1>
+                            {{ $root.title }}
+                            <small>Control panel</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                            <li class="active">Blank page</li>
+                        </ol>
+                    </section>
+                </div>                
+
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="view-container">
+                      <div ng-view class="view-frame"></div>
+                    </div>
+
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <!-- // <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> -->
+        <!-- Bootstrap -->
+        <script src="../theme/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="../theme/js/AdminLTE/app.js" type="text/javascript"></script>
+
+    </body>
+</html>

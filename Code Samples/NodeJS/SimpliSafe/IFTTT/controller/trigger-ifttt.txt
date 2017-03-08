@@ -1,0 +1,75 @@
+var TriggerModel = require('../db/mongoose').IftttTriggerModel;
+var conf         = require('../conf/config');
+var request      = require('request');
+var crypto       = require('crypto');
+var Logger      = require('./log').appLog(module);
+
+// trigger IFTTT for realtime
+exports.triggerIFTTT = function(event, callback){
+
+  var userId = event['userId'];
+  var eventType = event['eventCid'];
+  Logger.log("Trigger IFTTT for realtime eventCID: "+ eventType +' ,userId : ' + userId);
+
+
+  TriggerModel.find({userId: userId, 'trigger.value': eventType}, function(err, triggers) {
+    if(err) {
+      Logger.err('IFTTT Error: '+  err);
+      return callback(err);
+    }
+
+    var responses = [];
+    for(var k in triggers ) {
+
+      var triggerId = triggers[k].triggerId
+
+      if( triggerId === null) {
+        Logger.error('Trigger Identity is null');
+        return callback(new Error('trigger_identity is null'))
+      }
+
+      // send post request to ifttt
+      var postData = {
+        "data": [
+          {
+            "user_id": "" + userId + "",
+          },
+          {
+            "trigger_identity": "" + triggerId + ""
+          }
+        ]
+      };
+
+      var options = {
+        method: "POST",
+        url: conf.ifttt.realtimeNotificationUrl,
+        headers: {
+          "IFTTT-Channel-Key": conf.ifttt.channelKey,
+          "Accept": "application/json",
+          "Accept-Charset": "utf-8",
+          "Accept-Encoding": "gzip, deflate",
+          "Content-Type": "application/json",
+          "X-Request-ID": crypto.randomBytes(32).toString('hex')
+        },
+        body: postData,
+        json: true
+      };
+      request.post(options, function(err, httpResponse, body) {
+
+        if(!err && httpResponse.statusCode == 200){
+          Logger.debug('Trigger IFTTT realtime: for userId: ' + userId + ', trigger_identity: ' + triggerId);
+          responses.push('ok');
+        }else{
+          var body = JSON.parse(body);
+          if(body && body.hasOwnProperty('errors')) {
+            Logger.error('IFTTT Error for userId: ' + userId + ', trigger_identity: ' + triggerId +', Error: '+ body.errors.message);
+            responses.push(new Error(body.errors.message));
+          }else{
+            Logger.error('IFTTT Error for userId: ' + userId + ', trigger_identity: ' + triggerId +', Error: '+ body);
+          }
+        }
+      });
+    }
+    return callback(responses);
+  });
+};

@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Yellow\n"
+"POT-Creation-Date: 2014-03-01 14:07+0200\n"
+"PO-Revision-Date: 2014-03-01 14:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../\n"
+
+#: ..//src/CityGuide/Controller/IndexController.php:51
+msgid "othercities"
+msgstr "مدن أخرى"
+
+#: ..//src/CityGuide/Controller/IndexController.php:136
+#: ..//src/CityGuide/Controller/IndexController.php:143
+#: ..//src/CityGuide/Controller/IndexController.php:149
+msgid "plz"
+msgstr "برجاء إدخال"
+
+#: ..//src/CityGuide/Controller/IndexController.php:136
+#: ..//view/city-guide/index/index.phtml:48
+msgid "name"
+msgstr "الإسم"
+
+#: ..//src/CityGuide/Controller/IndexController.php:143
+msgid "validemail"
+msgstr "برجاء ادخال عنوان بريد اليكتروني صحيح"
+
+#: ..//src/CityGuide/Controller/IndexController.php:149
+#: ..//view/city-guide/index/index.phtml:57
+msgid "yourquestion"
+msgstr "الاستفسار"
+
+#: ..//src/CityGuide/Controller/IndexController.php:170
+msgid "msg_succ"
+msgstr "تم إرسال الرسالة بنجاح"
+
+#: ..//view/city-guide/index/about.phtml:3
+msgid "about"
+msgstr "عن"
+
+#: ..//view/city-guide/index/index.phtml:6
+msgid "welcome"
+msgstr "مرحبا"
+
+#: ..//view/city-guide/index/index.phtml:25
+msgid "moreon"
+msgstr "المزيد في المدينة"
+
+#: ..//view/city-guide/index/index.phtml:30
+msgid "POPULAR_CATEGORIES"
+msgstr "أهم التصنيفات"
+
+#: ..//view/city-guide/index/index.phtml:41
+msgid "havequestion"
+msgstr "هل لديك إستفسار؟ اتصل بنا الآن"
+
+#: ..//view/city-guide/index/index.phtml:51
+msgid "email"
+msgstr "البريد الإلكتروني"
+
+#: ..//view/city-guide/index/index.phtml:61
+msgid "post"
+msgstr "ارسل"

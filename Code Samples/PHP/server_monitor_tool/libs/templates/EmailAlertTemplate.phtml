@@ -1,0 +1,38 @@
+<style>
+	table tr.even {
+		background: #FFF;
+	}
+
+	table tr.odd {
+		background: #E0E0E0;
+	}
+</style>
+<h3>Yellow Monitor Reporting Service</h3>
+<table border=1 cellspacing=0 cellpadding=2>
+	<thead>
+	<tr>
+		<th>Service Name</th>
+		<th>Service Url</th>
+		<th>HTTP Status Code</th>
+		<th>Condition</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php foreach ($failedRequests as $req): ?>
+		<?php foreach ($req as $name => $info): ?>
+			<? $class = (@$class == "odd") ? "even" : "odd"; ?>
+			<tr class="<?= $class ?>">
+				<td><?= $name ?></td>
+				<td><?= $info['url'] ?></td>
+				<td><?= $info['http_status_code'] ?></td>
+				<td><?= ($info['condition_result'] == TRUE) ? 'SUCCESS' : 'FAILED'; ?></td>
+			</tr>
+			<tr class="<?= $class ?>">
+				<td colspan="4">
+					<pre><?= $info['http_return_headers'] ?></pre>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+	<?php endforeach; ?>
+	</tbody>
+</table>

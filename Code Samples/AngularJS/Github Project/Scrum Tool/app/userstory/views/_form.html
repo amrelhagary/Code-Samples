@@ -1,0 +1,23 @@
+<div class="box-body">
+	<div class="form-group" ng-class="{ 'has-error' : userstoryForm.usName.$invalid && userstoryForm.$submitted }">
+		<label>Title</label>
+		<input class="form-control" type="text" name="usName" ng-model="userstory.usName" required/>
+	</div>
+
+	<div class="form-group" ng-class="{ 'has-error' : userstoryForm.usDesc.$invalid && userstoryForm.$submitted }">
+		<label>Description</label>
+		<textarea class="form-control" name="usDesc" ng-model="userstory.usDesc" row="3" required></textarea>  
+	</div>
+	<div class="form-group">
+		<label>Release</label>
+		<release-list></release-list>
+	</div>
+
+	<div class="form-group">
+		<label>Product</label>
+		<product-list my-directive-var="userstory.product"></product-list>
+	</div>
+</div>
+<div class="box-footer">
+	<button type="submit" class="btn btn-primary">Submit</button>
+</div>

@@ -1,0 +1,61 @@
+<div class="box-body">
+	<div class="form-group" ng-class="{ 'has-error' : employeeForm.fisrtName.$invalid && employeeForm.$submitted }">
+		<label>Firstname</label>
+		<input class="form-control" type="text" name="fisrtName" ng-model="employee.firstName" required/>
+	</div>
+
+	<div class="form-group" ng-class="{ 'has-error' : employeeForm.lastName.$invalid && employeeForm.$submitted }">
+		<label>Lastname</label>
+		<input class="form-control" type="text" name="lastName" ng-model="employee.lastName" required />
+	</div>
+
+	<div class="form-group" ng-class="{ 'has-error' : employeeForm.username.$invalid && employeeForm.$submitted }" ng-show="globals.currentUser.user_role === 'HR Admin'">
+		<label>Username</label>
+		<input class="form-control" type="text" name="username" ng-model="employee.username" required />
+	</div>
+
+	<div class="form-group" ng-class="{ 'has-error' : employeeForm.password.$invalid && employeeForm.$submitted }" ng-show="globals.currentUser.user_role === 'HR Admin'">
+		<label>password</label>
+		<input class="form-control" type="text" name="password" ng-model="employee.password" required />
+	</div>
+
+	<div class="form-group" ng-class="{ 'has-error' : employeeForm.role.$invalid && employeeForm.$submitted }" ng-show="globals.currentUser.user_role === 'HR Admin'">
+		<label>Employee Role</label>
+		<employee-role></employee-role>
+	</div>
+
+	<div class="form-group">
+		<label>E-mail</label>
+		<input class="form-control" type="text" name="email" ng-model="employee.email" />
+	</div>
+
+	<div class="form-group">
+		<label>phone</label>
+		<input class="form-control" type="text" name="phone" ng-model="employee.phone" />
+	</div>
+
+
+	<div class="form-group" ng-show="globals.currentUser.user_role === 'HR Admin'">
+		<label>Status</label>
+		<select class="form-control" ng-model="employee.status" ng-options="s.statusDesc for s in status track by s.statusId"></select>
+	</div>
+
+	<div class="form-group" ng-show="globals.currentUser.user_role === 'HR Admin'">
+		<label>Hire Date</label>
+		<input class="form-control" type="text" name="hiredate" ng-model="employee.hireDate" />
+	</div>
+
+	<div class="form-group">
+		<label>Address</label>
+		<input class="form-control" type="text" name="address" ng-model="employee.address" />
+	</div>
+
+	<div class="form-group" ng-show="globals.currentUser.user_role === 'HR Admin'">
+		<label>Salary</label>
+		<input class="form-control" type="text" name="salary" ng-model="employee.salary" />
+	</div>
+</div>
+
+<div class="box-footer">
+	<button type="submit" class="btn btn-primary">Submit</button>
+</div>

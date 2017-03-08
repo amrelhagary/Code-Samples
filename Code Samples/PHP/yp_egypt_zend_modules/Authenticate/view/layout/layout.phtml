@@ -1,0 +1,36 @@
+<? use Application\Model\Cdn; ?>
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta gttp-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta gttp-equiv="PRAGMA" content="NO-CACHE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Career Admin</title>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/jquery.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/jqDataTable/jquery.dataTables.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/admin.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/bootstrap/js/bootstrap.js'))?>
+    <?= $this->headScript()->appendFile(Cdn::js('/admin/tinymce/tinymce.min.js'))?>
+    <?= $this->headLink()->appendStylesheet(Cdn::css('/admin/jqDataTable/css/jquery.dataTables.css'))?>
+    <?= $this->headLink()->appendStylesheet(Cdn::css('/admin/bootstrap/css/bootstrap.css'))?>
+    <?= $this->headLink()->appendStylesheet(Cdn::css('/admin/admin.css'))?>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="headerContainer col-md-12">
+            <?= $this->render('admin/layout/header') ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="contentContainer col-md-12 text-center">
+            <?= $this->layout()->content ?>
+        </div>
+    </div>
+
+    <?= $this->render('admin/layout/footer') ?>
+</div>
+</body>

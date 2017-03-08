@@ -1,0 +1,69 @@
+<?php
+    use Application\Model\Cdn;
+?>
+<div class="content left">
+    <div>
+        <h3 class="yellowBubble"><?= $this->translate('welcome').' '.$this->city->name ?></h3>
+        <div style="float: left; width: 370px;">
+            <div class="gallery">
+                <div class="largeImage divTable">
+                    <span class="divTableCell arrow" direction="left"><a></a></span>
+	                <img alt="" src="<?= Cdn::$mediaPath.'/modules/uploads/cityguide/photos/english/'.$this->city->images[0]->fileName ?>" width="295" height="183" />
+	                <span class="divTableCell arrow" direction="right"><a></a></span>
+                </div>
+                <div class="imageList">
+	                <ul class="horizontal">
+	                    <?php foreach($this->city->images as $cityImage): ?>
+	                    <li><a><img alt="" src="<?= Cdn::$mediaPath.'/modules/uploads/cityguide/photos/english/'.$cityImage->fileName ?>" width="74" height="69"  /></a></li>
+	                    <?php endforeach; ?>
+	                </ul>
+                </div>
+            </div>
+        </div>
+        <div style="float: left; width: 360px;">
+            <?= mb_substr($this->city->description, 0, 500, 'UTF-8').' ...' ?>
+            <a href="<?= $this->url('city-guide/aboutCity', array('language' => $this->language, 'cityId' => $this->city->name)) ?>"><?= $this->translate('moreon') ?></a>
+        </div>
+    </div>
+    <div style="width: 10px;"></div>
+    <div>
+        <h3 class="yellowBubble"><?= $this->translate('POPULAR_CATEGORIES') ?></h3>
+        <div class="popularCategories">
+            <ul>
+            <?php foreach($this->cloud as $category): ?>
+                <li><a href="<?= $this->url('category', array('language' => $this->language, 'city' => $this->city->name, 'area' => 'all', 'categoryName' => $category->name, 'categoryId' => $category->id)) ?>" style="font-size: <?= $category->fontSize ?>px;"><?= trim($category->name) ?></a></li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+    <div style="height: 10px;"></div>
+    <div>
+        <h3 class="yellowBubble"><?= $this->translate('havequestion') ?></h3>
+        <div id="questionBox" style="padding: 5px;" class="popularCategories">
+            <span id="messageBox"></span>
+            <form id="enquiryForm" method="post" action="addQuestion">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <div><label for="name"><?= $this->translate('name') ?> <span class="red_txt">*</span></label></div>
+                            <div><input id="name" name="name" /></div>
+                            <div><span id="NameError" class="red_txt"></span></div>
+                            <div><label for="email"><?= $this->translate('email') ?> <span class="red_txt">*</span></label></div>
+                            <div><input id="email" name="email" /></div>
+                            <div><span id="EmailError" class="red_txt"></span></div>
+                        </td>
+                        <td>
+                            <div>
+                                <div><label for="question"><?= $this->translate('yourquestion') ?> <span class="red_txt">*</span></label></div>
+                                <div><textarea id="question" name="question"></textarea></div>
+                                <div><span id="QuestionError" class="red_txt"></span></div>
+                            </div>
+                            <div style=" text-align: center;"><input id="submitButton" type="submit" value="<?= $this->translate('post') ?>" lang="<?= $this->language ?>" /></div>
+                            <input id="cityId" name="cityId" value="<?=$this->city->id?>" type="hidden" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>

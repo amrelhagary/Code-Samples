@@ -1,0 +1,30 @@
+{
+  "name": "MUM Scrum Tool",
+  "version": "1.0.0",
+  "homepage": "https://github.com/amrelhagary/MUM_SCRUM",
+  "authors": [
+    "Amr Elhagary <amr.elhagary@gmail.com>"
+  ],
+  "description": "Web App for managing Scrum with HR system",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.5",
+    "angular-route": "1.4.5",
+    "angular-resource": "1.4.5",
+    "angular-mocks": "1.4.5",
+    "bootstrap": "~3.1.1",
+    "angularjs-toaster": "*",
+    "angular-animate": "~1.4.5",
+    "angular-cookies": "1.4.5",
+    "ngDraggable": "~0.1.8",
+    "angular-google-chart": "~0.0.11"
+  }
+}

@@ -1,0 +1,50 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">Sprint List</h3>
+				<div class="box-tools">
+					<div class="input-group">
+						<input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" ng-model="searchSprint" />
+						<div class="input-group-btn">
+							<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.box-header -->
+			<div class="box-body table-responsive no-padding">
+				<table class="table table-hover">
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Estimate Time</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="sprint in sprintList | filter: searchSprint">
+
+						<td>
+							{{ sprint.id }}
+						</td>
+						<td>
+							{{ sprint.sprName }}
+						</td>
+						<td>
+							{{ sprint.estTime }}
+						</td>
+						<td>                                            
+							<div class="tools">
+								<a href="#/sprint/edit/{{sprint.id}}"><i class="fa fa-edit"></i></a>
+								<a href="javascript: void(0)" ng-click="deleteSprint(sprint.id,$index)">
+								<i class="fa fa-trash-o"></i></a>
+								<a href="#/add/userstory/sprint/{{sprint.id}}"><i class="fa fa-plus"></i></a>
+								<a href="#/burndown/{{sprint.id}}"><i class="fa fa-bar-chart"></i></a>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div><!-- /.box-body -->
+			<div class="box-footer clearfix no-border">
+				<a class="btn btn-default pull-right" ng-href="#/sprint/add"><i class="fa fa-plus"></i> Add sprint</a>
+			</div>
+		</div><!-- /.box -->
+	</div>

@@ -1,0 +1,114 @@
+<?php
+use Application\Model\Cdn;
+use Zend\Session\Container;
+$session = new Container('user');
+?>
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="rateCardApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="rateCardApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="rateCardApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="rateCardApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rate Card</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <?php if(getenv('APP_ENV') == 'development'): ?>
+        <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/vendor/bootstrap/dist/css/bootstrap.css')) ?>
+        <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/vendor/angular-toggle-switch/angular-toggle-switch.css')) ?>
+        <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/app.css')) ?>
+        <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/vendor/ng-table/ng-table.css')) ?>
+    <?php else: ?>
+        <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/builds/css/combined.min.css')) ?>
+    <?php endif ?>
+    <?= $this->headLink() ?>
+</head>
+<body>
+<?php
+    $friendlyName = $session->offsetGet('frinedly_name');
+    $userAvatar = $session->offsetGet('avatar');
+?>
+<div class="row">
+    <div class="col-md-12">
+        <div>
+            <img src="<?= $userAvatar ?>" />
+            Hello , <?= $friendlyName ?>
+        </div>
+        <ul class="menu">
+            <?php if($session->offsetGet('user_role') == 'admin'): ?>
+                <li><a href="#/users">Users</a></li>
+                <li><a href="#/platform">Platform</a></li>
+            <?php endif; ?>
+            <li><a href="#/client/add">Client</a></li>
+            <?= ($session->offsetExists('userId'))? '<li><a href="'.$this->url('rate_card_logout') .'">logout</a></li>' : '' ?>
+        </ul>
+    </div>
+</div>
+
+<?php if($session->offsetExists('user_email') && $session->offsetExists('access_token')): ?>
+<script type="text/javascript">
+    var auth = {
+        UserEmail: '<?= $session->offsetGet('user_email') ?>',
+        UserToken: '<?= $session->offsetGet('access_token') ?>'
+    }
+    window.auth = auth;
+</script>
+<?php endif ?>
+
+
+<alert-flash-view></alert-flash-view>
+<div ng-view></div>
+<?php
+/**
+* set development environment in js
+*/
+?>
+<?php if(getenv('APP_ENV') == 'development'): ?>
+    <script type="text/javascript">
+        window.env='development';
+    </script>
+<?php elseif(getenv('APP_ENV') == 'staging'): ?>
+    <script type="text/javascript">
+        window.env='staging';
+    </script>
+<?php endif; ?>
+
+
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular/angular.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular-route/angular-route.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular-resource/angular-resource.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular-cookies/angular-cookies.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/ng-table/ng-table.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/ng-file-upload/my-angular-file-upload.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/tinymce/tinymce.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular-ui-tinymce/src/tinymce.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/vendor/angular-toggle-switch/angular-toggle-switch.min.js')) ?>
+
+
+<?php if(getenv('APP_ENV') == 'development'): ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/path.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/app.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/app.directives.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/platform/platform.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/platform/platform.factory.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/subPlatform/subPlatform.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/subPlatform/subPlatform.factory.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/users/users.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/users/users.factory.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/platform-service/service.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/platform-service/service.factory.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/platform-service/service.directives.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/client/client.js')) ?>
+<? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/client/client.factory.js')) ?>
+<?php else: ?>
+    <? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/builds/js/build.min.js')) ?>
+<?php endif ?>
+<?= $this->headScript() ?>
+</body>
+</html>

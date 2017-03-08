@@ -1,0 +1,38 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url('authenticate',array('action' => 'authenticate')));
+$form->prepare();
+?>
+
+<?php
+if ($this->messages) {
+    echo '<ul>';
+    foreach ($this->messages as $message) {
+        if(is_array($message)){
+            foreach($message as $element => $error)
+            {
+                echo '<li>' . $element .':'.current($error).'</li>';
+            }
+        }else{
+            echo '<li>' . $message . '</li>';
+        }
+    }
+    echo '</ul>';
+}
+?>
+
+<?= $this->form()->openTag($form); ?>
+<div class="form-group">
+    <?= $this->formRow($form->get('username')); ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formRow($form->get('password')); ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formSubmit($form->get('submit')); ?>
+</div>
+
+
+<?= $this->form()->closeTag(); ?>

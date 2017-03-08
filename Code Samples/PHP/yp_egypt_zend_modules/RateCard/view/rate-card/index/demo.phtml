@@ -1,0 +1,131 @@
+<?php
+use Application\Model\Cdn;
+use Zend\Session\Container;
+$session = new Container('user');
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home: Rate Card</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="1200" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=0.82, maximum-scale=0.82, user-scalable=no">
+
+
+    <link rel="stylesheet" href="<?=Cdn::jsPlugins('/rate-card-app/demo/css/jquery.mobile-1.4.5.min.css')?>">
+    <link rel="stylesheet" href="<?=Cdn::jsPlugins('/rate-card-app/demo/css/style.css')?>">
+
+    <?php if($session->offsetExists('user_email') && $session->offsetExists('access_token')): ?>
+        <script type="text/javascript">
+            var auth = {
+                UserEmail: '<?= $session->offsetGet('user_email') ?>',
+                UserToken: '<?= $session->offsetGet('access_token') ?>'
+            }
+            window.auth = auth;
+        </script>
+    <?php endif ?>
+
+</head> <!--ffe974 -->
+<body>
+<!-- Main Container -->
+<div data-role="page" id="index">
+<div class="main_container" id="main">
+    <!-- Left side -->
+    <div class="left left_side">
+        <div class="upper_images">
+            <div class="image cartTab">
+                <a class="leftLink" href="#">
+                    <span class="bigCartNumber">0</span>
+                    <img class = "imageShow" src="<?=Cdn::jsPlugins('/rate-card-app/demo/images/cart.png')?>">
+                    <img class = "imageHide" src="<?=Cdn::jsPlugins('/rate-card-app/demo/images/carActive.png')?>">
+                </a>
+            </div>
+        </div>
+        <div class="lower_images">
+            <div class="image">
+
+                <!--<img src="images/arabic.png">-->
+            </div>
+
+            <!--<button class = "checkout" type="submit">Checkout</button>-->
+        </div>
+    </div>
+    <!-- End left side -->
+    <!-- Middle side -->
+    <div class="middle_side left">
+        <div class="middle_main_content">
+
+        </div>
+    </div>
+    <!-- End middle side -->
+    <div class="main_right_side">
+
+        <span class="mainFullScreen"><span class="fullscreen"></span></span>
+
+        <!-- Right side -->
+        <div class="right_side">
+
+
+        </div>
+        <!-- End right side -->
+        <span class="hint"></span>
+        <?php // <span class="mainFullScreen"><span class="fullscreen"></span></span> ?>
+        <div class="dots">
+            <div value="" class="button prevAction"></div>
+            <div class="dots-container"></div>
+            <div type="button" value="" class="button nextAction"></div>
+        </div>
+
+
+        <div data-role="popup" id="myPopup" class="mypopup ui-content" >
+            <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+            <h3 class="packageName"></h3>
+
+            <label>Quantity</label>
+            <input type="text" name="qty" class="qty" />
+            <div class="msg">Alert</div>
+            <label>Comment</label>
+            <textarea name="dealComment" class="dealComment" placeholder="Write a comment"></textarea>
+            <input type="hidden" id="package_table_id" name="service_id" value=""/>
+            <button class="popSubmit">Update</button>
+        </div>
+
+        <div data-role="popup" id="invoicePopup" class="mypopup ui-content" >
+            <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+            <div>
+                <button id="download_deal" name="download_deal">Download Proposal</button>
+                <button id="send_deal" name="download_deal">Send Proposal to Client</button>
+            </div>
+        </div>
+        <a href="#invoicePopup" id="openInvoicePopup" data-dismissible="false" data-rel="popup" data-transition="flip" data-position-to=".main_right_side" style='display:none;'>invoice</a>
+
+
+    </div>
+    <div style="display: none;" class="mobileTab">
+        <span class="desktopImage desktopIconActive"><a href="#"></a></span>
+        <span class="mobileImage mobileIconInactive"><a href="#"></a></span>
+    </div>
+</div>
+</div>
+<!-- End main container -->
+
+<?php
+/**
+ * set development environment in js
+ */
+?>
+<?php if(getenv('APP_ENV') == 'development'): ?>
+    <script type="text/javascript">
+        window.env='development';
+    </script>
+<?php endif ?>
+
+<script src="<?=Cdn::jsPlugins('/rate-card-app/demo/js/jquery.min.js')?>" type="text/javascript"></script>
+<script src="<?=Cdn::jsPlugins('/rate-card-app/demo/js/jquery.fileDownload.js')?>" type="text/javascript"></script>
+<script src="<?=Cdn::jsPlugins('/rate-card-app/demo/js/script.js')?>" type="text/javascript" ></script>
+<script src="<?=Cdn::jsPlugins('/rate-card-app/demo/js/jquery.mobile-1.4.5.min.js')?>" type="text/javascript"></script>
+</body>
+</html>

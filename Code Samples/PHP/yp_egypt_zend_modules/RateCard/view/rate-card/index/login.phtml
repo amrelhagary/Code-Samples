@@ -1,0 +1,55 @@
+<?php
+use Application\Model\Cdn;
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate Card</title>
+    <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/vendor/bootstrap/dist/css/bootstrap.css')) ?>
+    <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/Theme/assets/font-awesome/css/font-awesome.css')) ?>
+    <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/Theme/assets/css/style.css')) ?>
+    <? $this->headLink()->appendStylesheet(Cdn::jsPlugins('/rate-card-app/Theme/assets/css/style-responsive.css')) ?>
+    <? $this->headLink()->appendStylesheet("https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js") ?>
+    <? $this->headLink()->appendStylesheet("https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js") ?>
+    <?= $this->headLink() ?>
+</head>
+
+<body>
+
+<!-- **********************************************************************************************************************************************************
+MAIN CONTENT
+*********************************************************************************************************************************************************** -->
+
+<div id="login-page">
+    <div class="container">
+
+        <form class="form-login" action="index.html">
+            <h2 class="form-login-heading">Rate Card | Login</h2>
+
+            <div class="login-wrap">
+                <div>
+                    <span class="flashMessage"><?= $this->flashMessenger()->render('error') ?></span>
+                </div>
+                <div class="row">
+                    <div>
+                        <a href="<?= $authUrl ?>" class="btn btn-danger btn-block">Yellow Account</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+</div>
+
+    <? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/Theme/assets/js/jquery.js')) ?>
+    <? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/Theme/assets/js/bootstrap.min.js')) ?>
+    <? $this->headScript()->appendFile(Cdn::jsPlugins('/rate-card-app/Theme/assets/js/jquery.backstretch.min.js')) ?>
+
+<?= $this->headScript() ?>
+
+<script>
+    $.backstretch("<?=Cdn::jsPlugins('/rate-card-app/Theme/assets/img/Background.jpg')?>", {speed: 500});
+</script>
+</body>
+</html>

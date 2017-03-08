@@ -1,0 +1,27 @@
+<section class="content">
+	<form role="form" name="UserstoryForm" ng-submit="assignUserstory(UserstoryForm.$valid)" enctype="multipart/form-data" novalidate>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box box-primary">
+					<div class="box-header">
+						<h3 class="box-title">Assign User Story</h3>
+					</div><!-- /.box-header -->
+					<div class="box-body">
+						<div class="form-group">
+							<label>User Story : <span ng-bind="userstory.usName"></span></label>
+							<select 
+							name="employee"
+							class="form-control" 
+							ng-model="userstory.employee" 
+							ng-options="assign as (assign.firstName+' '+assign.lastName+' -- '+assign.role.roleDesc) for assign in assignList track by assign.id">
+						</select>
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</section>

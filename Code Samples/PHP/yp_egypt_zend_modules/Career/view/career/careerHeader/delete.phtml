@@ -1,0 +1,19 @@
+<?php
+$this->headTitle('Delete Career Header');
+$url = $this->url('career_header',array(
+    'action' => 'delete',
+    'id'    => $this->id
+))
+?>
+<b>Are you sure that you want to delete ?</b>
+<p>
+    <?= strip_tags($header->headerEn); ?>
+    <br/>
+    '<?php echo strip_tags($header->headerEn); ?>'
+    '<?php echo strip_tags($header->headerAr); ?>'?
+</p>
+<form action="<?= $url ?>" method="post">
+    <input type="hidden" name="id" value="<?php echo (int) $header->id; ?>" />
+    <input type="submit" name="del" class="btn btn-danger" value="Yes" />
+    <input type="submit" name="del" class="btn btn-primary" value="No" />
+</form>

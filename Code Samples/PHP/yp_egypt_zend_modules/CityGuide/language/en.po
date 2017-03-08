@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Yellow\n"
+"POT-Creation-Date: 2014-03-01 14:07+0200\n"
+"PO-Revision-Date: 2014-03-01 14:07+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: translate\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../\n"
+
+#: ..//src/CityGuide/Controller/IndexController.php:51
+msgid "othercities"
+msgstr "Other Cities"
+
+#: ..//src/CityGuide/Controller/IndexController.php:136
+#: ..//src/CityGuide/Controller/IndexController.php:143
+#: ..//src/CityGuide/Controller/IndexController.php:149
+msgid "plz"
+msgstr "Please enter"
+
+#: ..//src/CityGuide/Controller/IndexController.php:136
+#: ..//view/city-guide/index/index.phtml:48
+msgid "name"
+msgstr "Name"
+
+#: ..//src/CityGuide/Controller/IndexController.php:143
+msgid "validemail"
+msgstr "valid Email Address"
+
+#: ..//src/CityGuide/Controller/IndexController.php:149
+#: ..//view/city-guide/index/index.phtml:57
+msgid "yourquestion"
+msgstr "Your Question"
+
+#: ..//src/CityGuide/Controller/IndexController.php:170
+msgid "msg_succ"
+msgstr "Message Sent Successfully"
+
+#: ..//view/city-guide/index/about.phtml:3
+msgid "about"
+msgstr "About"
+
+#: ..//view/city-guide/index/index.phtml:6
+msgid "welcome"
+msgstr "Welcome"
+
+#: ..//view/city-guide/index/index.phtml:25
+msgid "moreon"
+msgstr "More on City"
+
+#: ..//view/city-guide/index/index.phtml:30
+msgid "POPULAR_CATEGORIES"
+msgstr "Popular categories"
+
+#: ..//view/city-guide/index/index.phtml:41
+msgid "havequestion"
+msgstr "Have&nbsp;a&nbsp;question&nbsp;-&nbsp;Get&nbsp;in&nbsp;touch"
+
+#: ..//view/city-guide/index/index.phtml:51
+msgid "email"
+msgstr "Email"
+
+#: ..//view/city-guide/index/index.phtml:61
+msgid "post"
+msgstr "Post"

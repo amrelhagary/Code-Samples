@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<h3 class="box-title">User Story List</h3>
+				<div class="box-tools">
+					<div class="input-group">
+						<input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search" ng-model="searchUserstory" />
+						<div class="input-group-btn">
+							<button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.box-header -->
+			<div class="box-body table-responsive no-padding">
+				<table class="table table-hover">
+					<tr>
+						<th>ID</th>
+						<th>Title</th>
+						<th>Assign</th>
+						<th>Release</th>
+						<th>Sprint</th>
+						<th>Severity</th>
+						<th ng-show="globals.currentUser.user_role === 'Product Owner'"></th>
+						<th ng-show="globals.currentUser.user_role === 'Scrum Master'">Assign</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="userstory in userstories | filter: searchUserstory">
+
+						<td>
+							{{ userstory.id }}
+						</td>
+						<td>
+							{{ userstory.usName }}
+						</td>
+						<td>
+							{{ userstory.employee.firstName }} - {{ userstory.employee.lastName }}
+						</td>
+						<td>
+							{{ userstory.release.relsName }}
+						</td>
+						<td>
+							{{ userstory.sprint.sprName }}
+						</td>
+						<td>
+							{{ userstory.severity.severityDesc }}
+						</td>
+						<td ng-show="globals.currentUser.user_role === 'Product Owner'">                                            
+							<div class="tools">
+								<a href="#/userstory/edit/{{userstory.id}}"><i class="fa fa-edit"></i></a>
+								<a href="javascript: void(0)" ng-click="deleteUserstory(userstory.id,$index)"><i class="fa fa-trash-o"></i></a>
+							</div>
+						</td>
+						
+						<td ng-show="globals.currentUser.user_role === 'Scrum Master'">                                            
+							<div class="tools">
+								<a href="#/userstory/assign/{{userstory.id}}"><i class="glyphicon glyphicon-user"></i></a>
+							</div>
+						</td>
+						<td ng-show="globals.currentUser.user_role === ('Developer' || 'Tester')">
+							<a href='#/userstory/details/{{userstory.id}}'><i class="glyphicon glyphicon-time"></i></a>
+						</td>
+					</tr>
+				</table>
+			</div><!-- /.box-body -->
+			<div class="box-footer clearfix no-border" ng-show="globals.currentUser.user_role === 'Product Owner'">
+				<a class="btn btn-default pull-right" ng-href="#/userstory/add"><i class="fa fa-plus"></i> Create User Story</a>
+			</div>
+		</div><!-- /.box -->
+	</div>

@@ -1,0 +1,27 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action',$this->url('career_header',array('action' => 'add','id' => $this->id)));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+?>
+<div class="form-group">
+    <?= $this->formRow($form->get('headerEn')); ?>
+</div>
+<div class="form-group">
+    <?= $this->formRow($form->get('headerAr')); ?>
+</div>
+<div class="form-group">
+    <?= $this->formSubmit($form->get('submit')); ?>
+</div>
+<?= $this->form()->closeTag(); ?>
+
+<script>
+    $(document).ready(function(){
+        // initialize tinymce
+        tinymce.init({
+            selector: "textarea"
+        });
+    });
+</script>

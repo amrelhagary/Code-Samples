@@ -1,0 +1,46 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action',$this->url('edit_vacancy',array('action' => 'edit','id' => $this->id)));
+$form->prepare();
+
+//echo $this->form()->openTag($form);
+//echo $this->formHidden($form->get('id'));
+//echo $this->formRow($form->get('nameEn'));
+//echo $this->formRow($form->get('nameAr'));
+//echo $this->formRow($form->get('descriptionEn'));
+//echo $this->formRow($form->get('descriptionAr'));
+//echo $this->formRow($form->get('availableVacancies'));
+//echo $this->formSubmit($form->get('submit'));
+//echo $this->form()->closeTag(); ?>
+
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get('id')); ?>
+    <div class="form-group">
+        <?= $this->formRow($form->get('nameEn')); ?>
+    </div>
+    <div class="form-group">
+        <?= $this->formRow($form->get('nameAr')); ?>
+    </div>
+    <div class="form-group">
+        <?= $this->formRow($form->get('descriptionEn')) ?>
+    </div>
+    <div class="form-group">
+        <?= $this->formRow($form->get('descriptionAr')); ?>
+    </div>
+    <div class="form-group">
+        <?= $this->formRow($form->get('availableVacancies')); ?>
+    </div>
+<?= $this->formSubmit($form->get('submit')); ?>
+
+
+<?= $this->form()->closeTag(); ?>
+
+<script type="text/javascript">
+    // initialize tinymce
+    $(document).ready(function(){
+        tinymce.init({
+            selector: "textarea",
+            mode: "textareas"
+        });
+    });
+</script>

@@ -1,0 +1,21 @@
+<? use Application\Model\Cdn; ?>
+<div class="row">
+    <div class="col-md-3 text-left">
+        <a href="/">
+            <img class="yellowpages" src="<?= Cdn::images('/admin/yellowpages-com-eg.jpg') ?>"
+                 alt="yellowpages"/>
+        </a>
+    </div>
+    <div class="col-md-6 text-center">
+        <?php  if ($user = $this->identity()): ?>
+            Hello <?= ucfirst($user) ?>
+        <?php else: ?>
+            <a href="<?= $this->url('login',array('action' => 'login'))?>">Login</a>
+        <?php endif ?>
+    </div>
+    <div class="col-md-3 text-right">
+        <?php  if ($user = $this->identity()): ?>
+            <a href="<?= $this->url('list_vacancies') ?>">Home</a>| <a href="<?= $this->url('logout',array('action' => 'logout'))?>">Logout</a>
+        <?php endif ?>
+    </div>
+</div>

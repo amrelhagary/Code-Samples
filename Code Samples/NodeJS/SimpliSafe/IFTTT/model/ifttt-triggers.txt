@@ -1,0 +1,52 @@
+var IftttTriggerModel = require('./mongoose').IftttTriggerModel;
+var TriggerModel = require('./mongoose').TriggerModel;
+var Logger            = require('../lib/log').appLog(module);
+
+
+exports.findTriggerIdentity = function(triggerId, userId, trigger, callback) {
+
+  if(!triggerId) {
+    Logger.debug('no trigger identity found');
+    return callback(new Error('no trigger identity found'));
+  }
+
+  IftttTriggerModel.find({userId: userId, triggerId: triggerId}, function(err, result){
+    if(err) {
+      Logger.error('Error in findTriggerIdentity: ' + err);
+      return callback(err);
+    }
+
+    if(!result || result.length === 0) {
+
+      var triggerModel = new TriggerModel({
+        name: trigger.name,
+        value: trigger.value
+      });
+
+
+      var triggerIdentityModel = new IftttTriggerModel({
+        triggerId: triggerId,
+        userId: userId,
+        trigger: [triggerModel]
+      });
+
+      triggerIdentityModel.save(function(err){
+
+        if(err){
+          Logger.error('IftttTriggerModel: ' + err);
+          return callback(err, null);
+        }
+      });
+    }
+
+    return callback(null, result);
+  });
+};
+
+exports.deleteTriggerIdentity = function(triggerId, callback) {
+  IftttTriggerModel.remove({triggerId: triggerId}, function(err, result) {
+    if(err) { return callback(err); }
+
+    return callback(null, result);
+  });
+};

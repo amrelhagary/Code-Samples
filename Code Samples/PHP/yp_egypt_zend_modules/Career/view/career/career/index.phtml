@@ -1,0 +1,71 @@
+<p>
+    listing all career applications
+</p>
+
+<table id="career_cvs" class="display" cellspacing="0">
+    <thead>
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Mobile</th>
+        <th>Date Added</th>
+        <th>Department</th>
+    </tr>
+    </thead>
+
+    <tfoot>
+    <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Mobile</th>
+        <th>Date Added</th>
+        <th>Department</th>
+    </tr>
+    </tfoot>
+
+    <tbody>
+
+    <? foreach ($paginator as $application): ?>
+        <tr>
+            <td><input type="checkbox" name="id" value="<?= $application->id ?>" ></td>
+            <td><?= $application->id ?></td>
+            <td><?= $application->full_name ?></td>
+            <td><?= $application->email ?></td>
+            <td><?= $application->mobile ?></td>
+            <td><?= $application->date_added ?></td>
+            <td><?= $application->dept_id ?></td>
+        </tr>
+    <? endforeach; ?>
+    </tbody>
+</table>
+
+<?=
+    $this->paginationControl(
+        $this->paginator,
+        'sliding',
+        array('partial/paginator.phtml', 'Career'),
+        array(
+            'route' => 'cv_career'
+        )
+    );
+?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // initialize datatable
+        $('#career_cvs').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": "<?= $this->url('cv_career',array('action' => 'ajaxProcessing'))?>"
+        });
+    });
+</script>
+
+<style>
+    .pagination ul li{ display: inline }
+    li.active a:link {font-weight: bold ; text-decoration: underline}
+</style>

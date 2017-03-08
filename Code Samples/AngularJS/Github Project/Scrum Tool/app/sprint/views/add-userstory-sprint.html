@@ -1,0 +1,49 @@
+<section class="content">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="box box-primary">
+						<div class="box-header">
+							<h3 class="box-title">Backlog</h3>
+						</div><!-- /.box-header -->
+						<div>
+							<div class="scrollit">
+								<span>Title</span>
+								<ul class="list-group">
+									<li ng-repeat="userstory in userstoriesNotAssigned" ng-drag="true" ng-drag-data="userstory" data-allow-transform="true" class="list-group-item">
+										{{ userstory.usName}}
+									</li>
+								</ul>
+							</div>
+							<div ng-drop="true" ng-drop-success="removeUserstoryFromSprint($data,$event)"
+							></div>
+						</div>
+						
+
+					</div>
+
+				</div>
+
+				<div class="col-md-6">
+					<div class="box box-primary">
+						<div class="box-header">
+							<h3 class="box-title">List of User Stories Assigned to Sprint: {{ sprint.sprName}}</h3>
+						</div><!-- /.box-header -->
+						<div>
+							<div class="scrollit">
+								<span>Title</span>
+								<ul class="list-group">
+									<li ng-repeat="userstory in userstoriesAssignedToSprint" class="list-group-item" ng-drag="true" ng-drag-data="userstory" data-allow-transform="true" class="list-group-item">
+										{{ userstory.usName}}
+									</li>
+								</ul>
+							</div>
+							<div ng-drop="true" ng-drop-success="addUserstoryToSprint($data,$event)"
+							></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>

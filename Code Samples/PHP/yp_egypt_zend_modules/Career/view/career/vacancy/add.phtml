@@ -1,0 +1,47 @@
+<?php
+$form = $this->form;
+$form->setAttribute('action',$this->url('add_vacancy',array('action' => 'add')));
+$form->setAttribute('role','form');
+$form->setAttribute('onSubmit','tinyMCE()');
+$form->prepare();
+?>
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get('id')); ?>
+<div class="form-group">
+    <?= $this->formRow($form->get('nameEn')); ?>
+</div>
+<div class="form-group">
+    <?= $this->formRow($form->get('nameAr')); ?>
+</div>
+<div class="form-group">
+    <?= $this->formRow($form->get('descriptionEn')) ?>
+</div>
+<div class="form-group">
+    <?= $this->formRow($form->get('descriptionAr')); ?>
+</div>
+<div class="form-group">
+    <?= $this->formRow($form->get('availableVacancies')); ?>
+</div>
+<?= $this->formSubmit($form->get('submit')); ?>
+
+<?php
+//foreach ($form as $element) {
+//    echo $this->formElementErrors()
+//        ->setMessageOpenFormat('<div class="help-inline">')
+//        ->setMessageSeparatorString('</div><div class="help-inline">')
+//        ->setMessageCloseString('</div>')
+//        ->render($element);
+//}
+?>
+
+
+<?= $this->form()->closeTag(); ?>
+<script type="text/javascript">
+    // initialize tinymce
+    $(document).ready(function(){
+        tinymce.init({
+            selector: "textarea",
+            mode: "textareas"
+        });
+    });
+</script>

@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-8">
+        <h3>
+            listing all career applications
+        </h3>
+    </div>
+    <div class="col-md-4 text-right mainButtons">
+        <a href="<?= $this->url('add_vacancy') ?>" type="button" class="btn btn-warning"><span class="glyphicon glyphicon-plus-sign"></span>New</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table id="departments" class="display" cellspacing="0">
+            <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Name En</th>
+                <th>Name Ar</th>
+                <th>Description En</th>
+                <th>Description Ar</th>
+                <th>Available Vacancies</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tfoot>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Name En</th>
+                <th>Name Ar</th>
+                <th>Description En</th>
+                <th>Description Ar</th>
+                <th>Available Vacancies</th>
+                <th>Actions</th>
+            </tr>
+            </tfoot>
+
+            <tbody>
+
+            <? foreach ($vacancies as $vacancy): ?>
+                <tr>
+                    <td><input type="checkbox" name="id" value="<?= $vacancy->id ?>" ></td>
+                    <td><?= $vacancy->id ?></td>
+                    <td><?= $vacancy->nameEn ?></td>
+                    <td><?= $vacancy->nameAr ?></td>
+                    <td><?= strip_tags($vacancy->descriptionEn) ?></td>
+                    <td><?= strip_tags($vacancy->descriptionAr) ?></td>
+                    <td><?= $vacancy->availableVacancies ?></td>
+                    <td>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a href="<?= $this->url('edit_vacancy',array('id' => $vacancy->id)) ?>" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a href="<?= $this->url('delete_vacancy',array('id' => $vacancy->id))?>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            <? endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // initialize datatable
+        $('#departments').dataTable();
+    });
+</script>

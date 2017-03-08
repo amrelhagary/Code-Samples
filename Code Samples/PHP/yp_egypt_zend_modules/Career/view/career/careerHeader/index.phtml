@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-12">
+        <h3>listing all career Headers</h3>
+        <a href="<?= $this->url('career_header',array('action' => 'add')) ?>" type="button" class="btn btn-primary">Add or UpDate Career Header</a>
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <? if(count($careerHeader) > 0): ?>
+        <table id="career_header" class="display" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Career Header En</th>
+                <th>Career Header Ar</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+
+            <tfoot>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Career Header En</th>
+                <th>Career Header Ar</th>
+                <th>Actions</th>
+            </tr>
+            </tfoot>
+
+            <tbody>
+
+            <? foreach ($careerHeader as $header): ?>
+                <tr>
+                    <td><input type="checkbox" name="id" value="<?= $header->id ?>" ></td>
+                    <td><?= $header->id ?></td>
+                    <td><?= $header->headerEn ?></td>
+                    <td><?= $header->headerAr ?></td>
+                    <td><a href="<?= $this->url('career_header',array('action' => 'delete', 'id' => $header->id))?>">Delete</a></td>
+                </tr>
+            <? endforeach; ?>
+            </tbody>
+        </table>
+        <?php else: ?>
+            Not Found
+        <?php endif ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#career_header").dataTable();
+    })
+
+</script>

@@ -1,0 +1,6 @@
+<select 
+class="form-control" 
+name="employee" 
+ng-model="userstory.employee" 
+ng-options="employee as (employee.firstName+' '+emplooyee.lastName) for employee in employeeList track by employee.id"
+></select>

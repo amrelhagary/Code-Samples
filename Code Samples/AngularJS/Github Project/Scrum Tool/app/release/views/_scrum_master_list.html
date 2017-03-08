@@ -1,0 +1,6 @@
+<select 
+class="form-control" 
+name="product" 
+ng-model="release.employee" 
+ng-options="e as (e.firstName+' '+e.lastName+' -- '+e.role.roleDesc) for e in employee track by e.id">
+</select>

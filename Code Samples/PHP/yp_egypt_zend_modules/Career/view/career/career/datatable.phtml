@@ -1,0 +1,63 @@
+<?php use Application\Model\Uri as URI; ?>
+<p>
+    listing all career applications
+</p>
+
+<table id="career_cvs" class="display" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Mobile</th>
+        <th>Department</th>
+        <th>Date Added</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tfoot>
+    <tr>
+        <th>Name</th>
+        <th>E-Mail</th>
+        <th>Mobile</th>
+        <th>Department</th>
+        <th>Date Added</th>
+        <th>Actions</th>
+    </tr>
+    </tfoot>
+
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+
+        // initialize datatable
+        var oTable = $('#career_cvs').dataTable({
+            "processing": true,
+            "serverSide": true,
+            "sPaginationType": "full_numbers",
+            "ajax": "<?= $this->url('cv_career',array('action' => 'ajaxProcessing'))?>",
+            "order": [[ 4, "desc" ]],
+            "aoColumnDefs":[
+                {
+                    "aTargets":[5],
+                    "data": null,
+                    "render": function ( data, type, row  ) {
+                        //console.log(row )
+                        return '<a href="<?= URI::$CV_DOWNLOAD_URL ?>/'+row[5]+'" class="btn full"><i class="icon-edit"></i>Download</a>';
+                    }
+                }
+            ]
+        });
+
+        // bind search box with key press
+        $("#career_cvs_filter input").unbind();
+        $("#career_cvs_filter input").keyup(function(e){
+            //console.log(e,this.value)
+            if(e.keyCode == 13){
+                oTable.fnFilter(this.value);
+            }
+        })
+    });
+</script>
